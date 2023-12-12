@@ -1,0 +1,14 @@
+<!-- <div *ngIf="vm$.loading | async">LOADING</div>
+<div *ngIf="vm$.error | async">Error: {{ vm$.error | async | json }}</div> -->
+
+<app-map
+  [loading]="(vm$ | async)!.loading"
+  [loadedImage]="(vm$ | async)!.selectedItem"
+  [currentExtent]="(vm$ | async)!.currentExtent"
+  (drawEnd$)="onDrawEnd($event)"
+></app-map>
+
+<app-items-preview
+  [items]="(vm$ | async)!.items"
+  (loadImage)="onLoadImage($event)"
+></app-items-preview>
