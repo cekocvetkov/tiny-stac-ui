@@ -10,7 +10,7 @@ import {
 import GeoJSON from 'ol/format/GeoJSON';
 
 import { Geometry } from 'ol/geom';
-import Draw, { DrawEvent, createBox } from 'ol/interaction/Draw';
+import Draw, { DrawEvent, createRegularPolygon } from 'ol/interaction/Draw';
 import VectorLayer from 'ol/layer/Vector';
 import { transformExtent } from 'ol/proj';
 import { GeoTIFF, OSM, sourcesFromTileGrid } from 'ol/source';
@@ -141,7 +141,7 @@ export class MapService {
     const drawInteraction = new Draw({
       source: source,
       type: 'Circle',
-      geometryFunction: createBox(),
+      geometryFunction: createRegularPolygon(4, 150),
     });
     drawInteraction.on('drawend', (e: DrawEvent) => this.onDrawEnd(e));
     return drawInteraction;
